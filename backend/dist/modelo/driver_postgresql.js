@@ -57,4 +57,4 @@ class DriverPostgreSQL {
         });
     }
 }
-module.exports = DriverPostgreSQL;
+exports.default = DriverPostgreSQL;
