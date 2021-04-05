@@ -48,7 +48,7 @@ class DriverPostgreSQL {
         return datos
     }
 
-    async query(sql:string){
+    async query(sql:string):Promise<QueryResult>{
         return await this.conexion2(sql)
     }
 

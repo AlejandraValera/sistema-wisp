@@ -16,7 +16,7 @@ class EquipoModelo extends DriverPostgreSql{
     }
 
     setDatos(datos:any):void {
-        this.id_equipo=datos.id_id_equipo
+        this.id_equipo=datos.id_equipo
         this.nombre_equipo=datos.nombre_equipo
         this.estatus_equipo=datos.estatus_equipo
     }
@@ -39,6 +39,19 @@ class EquipoModelo extends DriverPostgreSql{
 
     async consultar(): Promise<QueryResult>{
         const SQL:string=`SELECT * FROM tequipo WHERE id_equipo=${this.id_equipo};`
+        return await this.query(SQL)
+    }
+
+    async actualizar():Promise<QueryResult>{
+        const SQL:string=`UPDATE tequipo SET
+            nombre_equipo='${this.nombre_equipo}',
+            estatus_equipo='${this.estatus_equipo}'
+            WHERE id_equipo=${this.id_equipo};`
+        return await this.query(SQL)
+    }
+
+    async consultarTodos():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tequipo;`
         return await this.query(SQL)
     }
 

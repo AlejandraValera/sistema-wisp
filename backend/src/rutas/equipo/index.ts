@@ -8,5 +8,7 @@ router.use(body.json())
 
 router.post("/registrar",EquipoControlador.registrar)
 router.get("/consultar/:id",EquipoControlador.consultar)
+router.get("/consultar-todos",EquipoControlador.consultarTodos)
+router.put("/actualizar/:id",EquipoControlador.actualizar)
 
 export default router

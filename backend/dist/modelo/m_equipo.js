@@ -21,7 +21,7 @@ class EquipoModelo extends driver_postgresql_1.default {
         this.estatus_equipo = "";
     }
     setDatos(datos) {
-        this.id_equipo = datos.id_id_equipo;
+        this.id_equipo = datos.id_equipo;
         this.nombre_equipo = datos.nombre_equipo;
         this.estatus_equipo = datos.estatus_equipo;
     }
@@ -44,6 +44,21 @@ class EquipoModelo extends driver_postgresql_1.default {
     consultar() {
         return __awaiter(this, void 0, void 0, function* () {
             const SQL = `SELECT * FROM tequipo WHERE id_equipo=${this.id_equipo};`;
+            return yield this.query(SQL);
+        });
+    }
+    actualizar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `UPDATE tequipo SET
+            nombre_equipo='${this.nombre_equipo}',
+            estatus_equipo='${this.estatus_equipo}'
+            WHERE id_equipo=${this.id_equipo};`;
+            return yield this.query(SQL);
+        });
+    }
+    consultarTodos() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tequipo;`;
             return yield this.query(SQL);
         });
     }
