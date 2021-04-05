@@ -20,7 +20,7 @@ class DriverPostgreSQL {
         this.database.connect()
     }
     
-    async conexion2(sql:string):Promise<QueryResult>{
+    protected async conexion2(sql:string):Promise<QueryResult>{
         let datos:any;
         await this.database.connect()
         .then (async cliente => {
