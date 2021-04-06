@@ -6,7 +6,7 @@ import moduloEquipo from "./rutas/equipo/index"
 
 const app=express()
 
-const nombreApi:string="/api"
+const nombreApi:string="api-wisp"
 
 app.set("puerto",8080)
 
@@ -14,7 +14,7 @@ app.set("puerto",8080)
 app.use(logger("dev"))
 .use(cors())
 // modulos
-app.use(`${nombreApi}/equipo`,moduloEquipo)
+app.use(`/${nombreApi}/equipo`,moduloEquipo)
 
 
 
