@@ -62,5 +62,11 @@ class EquipoModelo extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    consultarPorNombre(nombre) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tequipo WHERE nombre_equipo LIKE '%${nombre}%'`;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = EquipoModelo;

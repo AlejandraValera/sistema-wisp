@@ -55,6 +55,11 @@ class EquipoModelo extends DriverPostgreSql{
         return await this.query(SQL)
     }
 
+    async consultarPorNombre(nombre:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tequipo WHERE nombre_equipo LIKE '%${nombre}%'`
+        return await this.query(SQL)
+    }
+
     
 
 

@@ -111,6 +111,28 @@ let EquipoControlador = {
             }));
             res.end();
         }
+    }),
+    consultarPorNombre: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { nombre } = req.params;
+        let mEquipo = new m_equipo_1.default();
+        let result_equipo = yield mEquipo.consultarPorNombre(nombre);
+        if (result_equipo.rowCount > 0) {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `cosnultar completada`,
+                estado: true,
+                datos: result_equipo.rows
+            }));
+            res.end();
+        }
+        else {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `no se a encontrado ningun equipo con el nombre de ${nombre}`,
+                estado: false
+            }));
+            res.end();
+        }
     })
 };
 exports.default = EquipoControlador;

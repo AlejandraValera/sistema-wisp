@@ -12,4 +12,5 @@ router.post("/registrar", c_equipo_1.default.registrar);
 router.get("/consultar/:id", c_equipo_1.default.consultar);
 router.get("/consultar-todos", c_equipo_1.default.consultarTodos);
 router.put("/actualizar/:id", c_equipo_1.default.actualizar);
+router.get("/consultar-por-nombre/:nombre", c_equipo_1.default.consultarPorNombre);
 exports.default = router;

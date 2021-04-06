@@ -107,6 +107,28 @@ let EquipoControlador={
             }))
             res.end()
         }
+    },
+    consultarPorNombre:async (req:Request,res:Response) => {
+        let {nombre} = req.params
+        let mEquipo:EquipoModelo=new EquipoModelo()
+        let result_equipo:QueryResult=await mEquipo.consultarPorNombre(nombre)
+        if(result_equipo.rowCount>0){
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`cosnultar completada`,
+                estado:true,
+                datos:result_equipo.rows
+            }))
+            res.end()
+        }
+        else{
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`no se a encontrado ningun equipo con el nombre de ${nombre}`,
+                estado:false
+            }))
+            res.end()
+        }
     }
 
 }
