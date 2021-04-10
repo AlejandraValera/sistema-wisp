@@ -7,6 +7,9 @@ const router:Router=Router()
 router.use(bodyparse.json())
 
 router.post("/registrar",ModeloEquipoControlador.registrar)
+router.get("/consultar/:id",ModeloEquipoControlador.consultar)
+router.get("/consultar-todos",ModeloEquipoControlador.consultarTodos)
+router.put("/actualizar/:id",ModeloEquipoControlador.actualizar)
 
 
 export default router

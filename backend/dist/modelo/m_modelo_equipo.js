@@ -53,5 +53,48 @@ class ModeloEquipoModelo extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    consultar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tmodelo WHERE id_modelo_equipo=${this.id_modelo_equipo};`;
+            return yield this.query(SQL);
+        });
+    }
+    consultarTodos() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tmodelo;`;
+            return yield this.query(SQL);
+        });
+    }
+    actualizar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `UPDATE tmodelo SET
+            nombre_modelo_equipo='${this.nombre_modelo_equipo}',
+            estatu_modelo_equipo='${this.estatu_modelo_equipo}',
+            id_equipo=${this.id_equipo},
+            frecuencia_modelo_equipo='${this.frecuencia_modelo_equipo}'
+            WHERE 
+            id_modelo_equipo=${this.id_modelo_equipo};
+        `;
+            return yield this.query(SQL);
+        });
+    }
+    consultarPorEquipo() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tmodelo WHERE id_equipo=${this.id_equipo};`;
+            return yield this.query(SQL);
+        });
+    }
+    consultarPorNombreModeloYEquipo(nombre_modelo_equipo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tmodelo WHERE  id_equipo=${this.id_equipo} AND nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `;
+            return yield this.query(SQL);
+        });
+    }
+    consultarPorNombr(nombre_modelo_equipo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tmodelo WHERE nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ModeloEquipoModelo;

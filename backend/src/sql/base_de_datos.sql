@@ -14,5 +14,6 @@ CREATE TABLE tmodelo(
     id_equipo INTEGER NOT NULL,
     frecuencia_modelo_equipo FLOAT NOT NULL,
     constraint PK_id_modelo_equipo primary key(id_modelo_equipo),
-    constraint FK_id_equipo foreign key(id_modelo_equipo) references tequipo(id_equipo) ON DELETE CASCADE ON UPDATE CASCADE
+    constraint FK_id_equipo foreign key(id_equipo) references tequipo(id_equipo) ON DELETE CASCADE ON UPDATE CASCADE
 );
+

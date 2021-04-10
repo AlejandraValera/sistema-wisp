@@ -52,6 +52,42 @@ class ModeloEquipoModelo extends DriverPostgreSql{
         return await this.query(SQL)
     }
 
+    async consultar():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo WHERE id_modelo_equipo=${this.id_modelo_equipo};`
+        return await this.query(SQL)
+    }
+
+    async consultarTodos():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo;`
+        return await this.query(SQL)
+    }
+
+    async actualizar():Promise<QueryResult>{
+        const SQL:string=`UPDATE tmodelo SET
+            nombre_modelo_equipo='${this.nombre_modelo_equipo}',
+            estatu_modelo_equipo='${this.estatu_modelo_equipo}',
+            id_equipo=${this.id_equipo},
+            frecuencia_modelo_equipo='${this.frecuencia_modelo_equipo}'
+            WHERE 
+            id_modelo_equipo=${this.id_modelo_equipo};
+        `
+        return await this.query(SQL)
+    }
+
+    async consultarPorEquipo():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo WHERE id_equipo=${this.id_equipo};`
+        return await this.query(SQL)
+    }
+
+    async consultarPorNombreModeloYEquipo(nombre_modelo_equipo:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo WHERE  id_equipo=${this.id_equipo} AND nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `
+        return await this.query(SQL)
+    }
+    
+    async consultarPorNombr(nombre_modelo_equipo:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo WHERE nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `
+        return await this.query(SQL)
+    }
 }
 
 export default ModeloEquipoModelo
