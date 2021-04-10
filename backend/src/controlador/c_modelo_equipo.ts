@@ -38,7 +38,7 @@ let modeloEquipoControlador={
             res.write(JSON.stringify({
                 mensaje:"consulta completada",
                 estado:true,
-                datos:result_modelo.rows
+                datos:result_modelo.rows[0]
             }))
             res.end()
         }
@@ -92,6 +92,74 @@ let modeloEquipoControlador={
             res.writeHead(200,"'content-type':application/json")
             res.write(JSON.stringify({
                 mensaje:"error al actualizar, no se encontrado el modelo a actualizar",
+                estado:false
+            }))
+            res.end()
+        }
+    },
+    consultarPorEquipo:async (req:Request,res:Response) => {
+        let {idEquipo} = req.params
+        let mModeloEquipo:ModeloEquipoModelo=new ModeloEquipoModelo()
+        mModeloEquipo.setIdEquipo(idEquipo)
+        let result_modelo:QueryResult=await mModeloEquipo.consultarPorEquipo()
+        if(result_modelo.rowCount>0){
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`consulta completada`,
+                estado:true,
+                datos:result_modelo.rows
+            }))
+            res.end()
+        }
+        else{
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`no se a encontrado ningun modelo realacionado a este equipo =>>>(codigo del equipo => ${idEquipo})`,
+                estado:false
+            }))
+            res.end()
+        }
+    },
+    consultarPorIdEquipoYNombreModelo:async (req:Request,res:Response) => {
+        let {idEquipo,nombreModelo} = req.params
+        let mModeloEquipo:ModeloEquipoModelo=new ModeloEquipoModelo()
+        mModeloEquipo.setIdEquipo(idEquipo)
+        let result_modelo:QueryResult=await mModeloEquipo.consultarPorIdEquipoYNombreModelo(nombreModelo)
+        if(result_modelo.rowCount>0){
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`consultar completada`,
+                estado:true,
+                datos:result_modelo.rows
+            }))
+            res.end()
+        }
+        else{
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`no se a encontrado ningun modelo`,
+                estado:false
+            }))
+            res.end()
+        }
+    }
+    ,consultarPorNombreModelo:async (req:Request,res:Response) => {
+        let {nombreModelo} = req.params
+        let mModeloEquipo:ModeloEquipoModelo=new ModeloEquipoModelo()
+        let result_modelo:QueryResult=await mModeloEquipo.consultarPorNombreModelo(nombreModelo)
+        if(result_modelo.rowCount>0){
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`no se a encontrado ningun modelo`,
+                estado:true,
+                datos:result_modelo.rows
+            }))
+            res.end()
+        }
+        else{
+            res.writeHead(200,"'content-type':application/json")
+            res.write(JSON.stringify({
+                mensaje:`no se a encontrado ningun modelo`,
                 estado:false
             }))
             res.end()

@@ -55,13 +55,13 @@ class ModeloEquipoModelo extends driver_postgresql_1.default {
     }
     consultar() {
         return __awaiter(this, void 0, void 0, function* () {
-            const SQL = `SELECT * FROM tmodelo WHERE id_modelo_equipo=${this.id_modelo_equipo};`;
+            const SQL = `SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_modelo_equipo=${this.id_modelo_equipo} AND tmodelo.id_equipo=tequipo.id_equipo;`;
             return yield this.query(SQL);
         });
     }
     consultarTodos() {
         return __awaiter(this, void 0, void 0, function* () {
-            const SQL = `SELECT * FROM tmodelo;`;
+            const SQL = `SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_equipo=tequipo.id_equipo;`;
             return yield this.query(SQL);
         });
     }
@@ -80,19 +80,19 @@ class ModeloEquipoModelo extends driver_postgresql_1.default {
     }
     consultarPorEquipo() {
         return __awaiter(this, void 0, void 0, function* () {
-            const SQL = `SELECT * FROM tmodelo WHERE id_equipo=${this.id_equipo};`;
+            const SQL = `SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_equipo=${this.id_equipo} AND (tmodelo.id_equipo=tequipo.id_equipo);`;
             return yield this.query(SQL);
         });
     }
-    consultarPorNombreModeloYEquipo(nombre_modelo_equipo) {
+    consultarPorIdEquipoYNombreModelo(nombre_modelo_equipo) {
         return __awaiter(this, void 0, void 0, function* () {
-            const SQL = `SELECT * FROM tmodelo WHERE  id_equipo=${this.id_equipo} AND nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `;
+            const SQL = `SELECT * FROM tmodelo,tequipo WHERE  tmodelo.id_equipo=${this.id_equipo} AND (tmodelo.id_equipo=tequipo.id_equipo) AND tmodelo.nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `;
             return yield this.query(SQL);
         });
     }
-    consultarPorNombr(nombre_modelo_equipo) {
+    consultarPorNombreModelo(nombre_modelo_equipo) {
         return __awaiter(this, void 0, void 0, function* () {
-            const SQL = `SELECT * FROM tmodelo WHERE nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `;
+            const SQL = `SELECT * FROM tmodelo,tequipo WHERE tmodelo.nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' AND (tmodelo.id_equipo=tequipo.id_equipo)`;
             return yield this.query(SQL);
         });
     }

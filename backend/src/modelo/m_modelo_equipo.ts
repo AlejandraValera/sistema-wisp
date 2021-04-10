@@ -53,12 +53,12 @@ class ModeloEquipoModelo extends DriverPostgreSql{
     }
 
     async consultar():Promise<QueryResult>{
-        const SQL:string=`SELECT * FROM tmodelo WHERE id_modelo_equipo=${this.id_modelo_equipo};`
+        const SQL:string=`SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_modelo_equipo=${this.id_modelo_equipo} AND tmodelo.id_equipo=tequipo.id_equipo;`
         return await this.query(SQL)
     }
 
     async consultarTodos():Promise<QueryResult>{
-        const SQL:string=`SELECT * FROM tmodelo;`
+        const SQL:string=`SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_equipo=tequipo.id_equipo;`
         return await this.query(SQL)
     }
 
@@ -75,17 +75,17 @@ class ModeloEquipoModelo extends DriverPostgreSql{
     }
 
     async consultarPorEquipo():Promise<QueryResult>{
-        const SQL:string=`SELECT * FROM tmodelo WHERE id_equipo=${this.id_equipo};`
+        const SQL:string=`SELECT * FROM tmodelo,tequipo WHERE tmodelo.id_equipo=${this.id_equipo} AND (tmodelo.id_equipo=tequipo.id_equipo);`
         return await this.query(SQL)
     }
 
-    async consultarPorNombreModeloYEquipo(nombre_modelo_equipo:string):Promise<QueryResult>{
-        const SQL:string=`SELECT * FROM tmodelo WHERE  id_equipo=${this.id_equipo} AND nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `
+    async consultarPorIdEquipoYNombreModelo(nombre_modelo_equipo:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo,tequipo WHERE  tmodelo.id_equipo=${this.id_equipo} AND (tmodelo.id_equipo=tequipo.id_equipo) AND tmodelo.nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `
         return await this.query(SQL)
     }
     
-    async consultarPorNombr(nombre_modelo_equipo:string):Promise<QueryResult>{
-        const SQL:string=`SELECT * FROM tmodelo WHERE nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' `
+    async consultarPorNombreModelo(nombre_modelo_equipo:string):Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tmodelo,tequipo WHERE tmodelo.nombre_modelo_equipo LIKE '%${nombre_modelo_equipo}%' AND (tmodelo.id_equipo=tequipo.id_equipo)`
         return await this.query(SQL)
     }
 }

@@ -46,7 +46,7 @@ let modeloEquipoControlador = {
             res.write(JSON.stringify({
                 mensaje: "consulta completada",
                 estado: true,
-                datos: result_modelo.rows
+                datos: result_modelo.rows[0]
             }));
             res.end();
         }
@@ -98,6 +98,74 @@ let modeloEquipoControlador = {
             res.writeHead(200, "'content-type':application/json");
             res.write(JSON.stringify({
                 mensaje: "error al actualizar, no se encontrado el modelo a actualizar",
+                estado: false
+            }));
+            res.end();
+        }
+    }),
+    consultarPorEquipo: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { idEquipo } = req.params;
+        let mModeloEquipo = new m_modelo_equipo_1.default();
+        mModeloEquipo.setIdEquipo(idEquipo);
+        let result_modelo = yield mModeloEquipo.consultarPorEquipo();
+        if (result_modelo.rowCount > 0) {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `consulta completada`,
+                estado: true,
+                datos: result_modelo.rows
+            }));
+            res.end();
+        }
+        else {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `no se a encontrado ningun modelo realacionado a este equipo =>>>(codigo del equipo => ${idEquipo})`,
+                estado: false
+            }));
+            res.end();
+        }
+    }),
+    consultarPorIdEquipoYNombreModelo: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { idEquipo, nombreModelo } = req.params;
+        let mModeloEquipo = new m_modelo_equipo_1.default();
+        mModeloEquipo.setIdEquipo(idEquipo);
+        let result_modelo = yield mModeloEquipo.consultarPorIdEquipoYNombreModelo(nombreModelo);
+        if (result_modelo.rowCount > 0) {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `consultar completada`,
+                estado: true,
+                datos: result_modelo.rows
+            }));
+            res.end();
+        }
+        else {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `no se a encontrado ningun modelo`,
+                estado: false
+            }));
+            res.end();
+        }
+    }),
+    consultarPorNombreModelo: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { nombreModelo } = req.params;
+        let mModeloEquipo = new m_modelo_equipo_1.default();
+        let result_modelo = yield mModeloEquipo.consultarPorNombreModelo(nombreModelo);
+        if (result_modelo.rowCount > 0) {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `no se a encontrado ningun modelo`,
+                estado: true,
+                datos: result_modelo.rows
+            }));
+            res.end();
+        }
+        else {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: `no se a encontrado ningun modelo`,
                 estado: false
             }));
             res.end();
