@@ -31,3 +31,19 @@ INSERT INTO tmodelo(nombre_modelo_equipo,estatu_modelo_equipo,id_equipo,frecuenc
 INSERT INTO tmodelo(nombre_modelo_equipo,estatu_modelo_equipo,id_equipo,frecuencia_modelo_equipo) VALUES('modelo 3','1',2,'5.2');
 INSERT INTO tmodelo(nombre_modelo_equipo,estatu_modelo_equipo,id_equipo,frecuencia_modelo_equipo) VALUES('modelo 4','1',2,'5.2');
 
+CREATE TABLE tcliente(
+    cedula_cliente character varying(8) NOT NULL,
+    nombres_cliente character varying(150) NOT NULL,
+    apellidos_cliente character varying(150) NOT NULL,
+    correo_clinte character varying(300),
+    telefono_movil_cliente character varying(11),
+    telefono_local_cliente character varying(11),
+    direccion_cliente character varying(3000) NOT NULL,
+    mac_antena_cliente character varying(150) NOT NULL,
+    fecha_registro_cliente DATE NOT NULL,
+    estatu_cliente character(1) NOT NULL,
+    link_google_map_cliente character varying(3000) NOT NULL,
+    id_modelo_equipo INTEGER NOT NULL,
+    constraint PK_cedula_cliente primary key(cedula_cliente),
+    constraint FK_modelo_equipo foreign key(id_modelo_equipo) references tmodelo ON UPDATE CASCADE ON DELETE CASCADE
+);
