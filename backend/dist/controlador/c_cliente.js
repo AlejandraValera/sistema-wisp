@@ -35,6 +35,30 @@ const clienteControlador = {
             }));
             res.end();
         }
+    }),
+    consultar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+        let { id_cedula } = req.params;
+        let clienteModelo = new m_cliente_1.default();
+        clienteModelo.setCedula(id_cedula);
+        let clienteResult = yield clienteModelo.consultar();
+        if (clienteResult.rowCount > 0) {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: "cliente consultado exitosamente",
+                estado: true,
+                datos: clienteResult.rows
+            }));
+            res.end();
+        }
+        else {
+            res.writeHead(200, "'content-type':application/json");
+            res.write(JSON.stringify({
+                mensaje: "error al consultar no se a encontrado al cliente",
+                estado: false,
+                datos: []
+            }));
+            res.end();
+        }
     })
 };
 exports.default = clienteControlador;

@@ -84,6 +84,11 @@ class ClienteModelo extends DriverPostgreSql{
         return await this.query(SQL)
     }
 
+    async consultar():Promise<QueryResult>{
+        const SQL:string=`SELECT * FROM tcliente,tmodelo,tequipo WHERE tcliente.cedula_cliente='${this.cedula_cliente}' AND tcliente.id_modelo_equipo=tmodelo.id_modelo_equipo AND tmodelo.id_equipo=tequipo.id_equipo`;
+        return await this.query(SQL)
+    }
+
 
 }
 

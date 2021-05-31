@@ -79,5 +79,11 @@ class ClienteModelo extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    consultar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `SELECT * FROM tcliente,tmodelo,tequipo WHERE tcliente.cedula_cliente='${this.cedula_cliente}' AND tcliente.id_modelo_equipo=tmodelo.id_modelo_equipo AND tmodelo.id_equipo=tequipo.id_equipo`;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ClienteModelo;
