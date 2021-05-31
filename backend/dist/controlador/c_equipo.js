@@ -61,11 +61,6 @@ let EquipoControlador = {
         }
     }),
     actualizar: (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-        let respuesta_cliente = {
-            mensaje: "",
-            estado: false,
-            datos: []
-        };
         let { equipo } = req.body;
         let { id } = req.params;
         let mEquipo = new m_equipo_1.default();

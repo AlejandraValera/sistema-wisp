@@ -56,11 +56,6 @@ let EquipoControlador={
     },
 
     actualizar:async (req:Request,res:Response) => {
-        let respuesta_cliente={
-            mensaje:"",
-            estado:false,
-            datos:[]
-        }
         let {equipo} = req.body
         let {id} = req.params
         let mEquipo:EquipoModelo=new EquipoModelo()

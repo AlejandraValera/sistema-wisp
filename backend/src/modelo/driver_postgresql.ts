@@ -24,9 +24,9 @@ class DriverPostgreSQL {
         let datos:any;
         await this.database.connect()
         .then (async cliente => {
-            console.log("----------Inicio---------");
-            console.log("consulta sql =>>> ",sql);
-            console.log("----------Fin------------");
+            // console.log("----------Inicio---------");
+            // console.log("consulta sql =>>> ",sql);
+            // console.log("----------Fin------------");
             await cliente.query (sql)
             .then(res => {
                 cliente.release ();

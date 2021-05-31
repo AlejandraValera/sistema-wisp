@@ -1,7 +1,7 @@
 import { QueryResult } from 'pg';
 import DriverPostgreSql from './driver_postgresql'
 
-class ClenteModelo extends DriverPostgreSql{
+class ClienteModelo extends DriverPostgreSql{
 
     private cedula_cliente:string;
     private nombres_cliente:string;
@@ -86,3 +86,5 @@ class ClenteModelo extends DriverPostgreSql{
 
 
 }
+
+export default ClienteModelo
