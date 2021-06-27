@@ -10,4 +10,5 @@ const router = express_1.Router();
 router.use(body_parser_1.default.json());
 router.post("/registrar", c_cliente_1.default.registrar);
 router.get("/consultar/:id_cedula", c_cliente_1.default.consultar);
+router.put("/actualizar/:id_cedula", c_cliente_1.default.actualizar);
 exports.default = router;

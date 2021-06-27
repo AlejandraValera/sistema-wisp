@@ -85,5 +85,25 @@ class ClienteModelo extends driver_postgresql_1.default {
             return yield this.query(SQL);
         });
     }
+    actualizar() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const SQL = `UPDATE tcliente SET
+        nombres_cliente='${this.nombres_cliente}',
+        apellidos_cliente='${this.apellidos_cliente}',
+        correo_clinte='${this.correo_clinte}',
+        telefono_movil_cliente='${this.telefono_movil_cliente}',
+        telefono_local_cliente='${this.telefono_local_cliente}',
+        direccion_cliente='${this.direccion_cliente}',
+        mac_antena_cliente='${this.mac_antena_cliente}',
+        fecha_registro_cliente='${this.fecha_registro_cliente}',
+        estatu_cliente='${this.estatu_cliente}',
+        link_google_map_cliente='${this.link_google_map_cliente}',
+        id_modelo_equipo=${this.id_modelo_equipo}
+        WHERE 
+        cedula_cliente='${this.cedula_cliente}'
+        `;
+            return yield this.query(SQL);
+        });
+    }
 }
 exports.default = ClienteModelo;

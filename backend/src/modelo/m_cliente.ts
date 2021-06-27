@@ -89,6 +89,25 @@ class ClienteModelo extends DriverPostgreSql{
         return await this.query(SQL)
     }
 
+    async actualizar():Promise<QueryResult>{
+        const SQL:string=`UPDATE tcliente SET
+        nombres_cliente='${this.nombres_cliente}',
+        apellidos_cliente='${this.apellidos_cliente}',
+        correo_clinte='${this.correo_clinte}',
+        telefono_movil_cliente='${this.telefono_movil_cliente}',
+        telefono_local_cliente='${this.telefono_local_cliente}',
+        direccion_cliente='${this.direccion_cliente}',
+        mac_antena_cliente='${this.mac_antena_cliente}',
+        fecha_registro_cliente='${this.fecha_registro_cliente}',
+        estatu_cliente='${this.estatu_cliente}',
+        link_google_map_cliente='${this.link_google_map_cliente}',
+        id_modelo_equipo=${this.id_modelo_equipo}
+        WHERE 
+        cedula_cliente='${this.cedula_cliente}'
+        `
+        return await this.query(SQL)
+    }
+
 
 }
 
