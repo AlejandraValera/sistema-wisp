@@ -1,0 +1,83 @@
+:root{
+    --color-fono-encabesado:#00a6ff;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+html,body{
+    margin: 0;
+    padding: 0;
+}
+
+.encabezado{
+    width: 100vw;
+    height: 12vh;
+    background-color: var(--color-fono-encabesado);
+}
+.contenedor{
+    width: 100vw;
+    height: 88vh;
+    /* background-color: blue; */
+    position: relative;
+}
+
+.menu{
+    width: 30vh;
+    height: 100%;
+    position: absolute;
+    background-color: #303030c7;
+    transition: transform .5s ease-out;
+}
+
+.menu-cerrar{
+    transform: translateX(-100%);
+}
+
+.contenedorContenido{
+    width: 100vw;
+    height: 100%;
+    /* background-color: crimson; */
+}
+
+.encabezado > .icon-menu{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.encabezado > .icon-menu > svg{
+    width: 40px;
+    height: 40px;
+    color:#FFF;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.encabezado > .icon-menu > svg:hover {
+    color:#dbdbdb;
+}
+
+.menuUl{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.item-menu{
+    display: block;
+    width: 100%;
+    padding:10px 0;
+    text-align: center;
+    text-decoration: none;
+    color:#FFF;
+
+}
+
+.item-menu:hover{
+    background-color: #303030;
+}
+
